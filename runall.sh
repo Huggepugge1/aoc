@@ -21,5 +21,6 @@ for d in */; do
     echo "Part 2"
     python3 part2.py
     cd ..
-    echo "\n"
+    echo "
+    "
 done
