@@ -33,13 +33,13 @@ int main() {
     std::string line;
     while (infile >> line) {
         int current = 0;
-        for (int i = 0; i < line.length(); i++) {
+        for (unsigned long int i = 0; i < line.length(); i++) {
             if (line[i] - 48 <= 9) {
                 current = line[i] - 48;
                 break;
             }
             std::string current_string = "";
-            for (int j = i; j < line.length(); j++) {
+            for (unsigned long int j = i; j < line.length(); j++) {
                 current_string += line[j];
                 if (numbers.find(current_string) != numbers.end()) {
                     current = numbers[current_string];
@@ -49,13 +49,13 @@ int main() {
         }
 reverse:
         reverse(line.begin(), line.end());
-        for (int i = 0; i < line.length(); i++) {
+        for (unsigned long int i = 0; i < line.length(); i++) {
             if (line[i] - 48 <= 9) {
                 current = current * 10 + line[i] - 48;
                 break;
             }
             std::string current_string = "";
-            for (int j = i; j < line.length(); j++) {
+            for (unsigned long int j = i; j < line.length(); j++) {
                 current_string += line[j];
                 if (numbers.find(current_string) != numbers.end()) {
                     current = current * 10 + numbers[current_string];

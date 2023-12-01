@@ -15,7 +15,7 @@ for d in */; do
     echo "---------------"
     echo "Day $(echo $d | rev | cut -b 2- | rev)"
     echo "---------------"
-    ./solve.sh
+    ./run.sh -q
     cd ..
     echo "
     "
