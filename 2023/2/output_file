@@ -1,0 +1,1 @@
+g++ -O3  -std=c++20 -o part2 part2.cpp
