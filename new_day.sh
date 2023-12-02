@@ -23,8 +23,8 @@ int main() {
     int ans = 0;
     std::ifstream infile(\"input.txt\");
     std::string line;
-    while (infile >> line) {
-        
+    while (std::getline(infile, line)) {
+        std::cout << line << std::endl;
     }
     
     
@@ -39,8 +39,8 @@ int main() {
     int ans = 0;
     std::ifstream infile(\"input.txt\");
     std::string line;
-    while (infile >> line) {
-        
+    while (std::getline(infile, line)) {
+        std::cout << line << std::endl;
     }
     
     
@@ -49,15 +49,19 @@ int main() {
 
 echo "#!/bin/bash
 output_file=\"/dev/stdout\"
-while getopts \"q\" opt; do
-  case \$opt in
-    q)
-      output_file=\"/dev/null\"
-      ;;
-  esac
+std=\"c++23\"
+while getopts \"qs:\" opt; do
+    case \$opt in
+        q)
+            output_file=\"/dev/null\"
+            ;;
+        s)
+            std=\$OPTARG
+            ;;
+    esac
 done
 
-make > output_file
+make STD=\$std > output_file
 
 echo \"Part 1\"
 ./part1
@@ -67,22 +71,23 @@ echo \"Part 2\"
 chmod +x run.sh
 
 echo "C = g++
-CFLAGS = -std=c++23 -O3
+C = g++
+CFLAGS = -O3
+STD ?= c++23
 DEFAULT_WARNINGS = -Wextra -Wall
 
 all: part1 part2
 
 part1: part1.cpp
-	\$(C) \$(CFLAGS) \$(WARNINGS) -o part1 part1.cpp
+	\$(C) \$(CFLAGS) \$(WARNINGS) -std=\$(STD) -o part1 part1.cpp
 
 part2: part2.cpp
-	\$(C) \$(CFLAGS) \$(WARNINGS) -o part2 part2.cpp
+	\$(C) \$(CFLAGS) \$(WARNINGS) -std=\$(STD) -o part2 part2.cpp
 
 
 clean:
 	rm -f part1 part2
 
 ifndef WARNINGS
-    WARNINGS = \$(DEFAULT_WARNINGS)
-endif
-" > makefile
+	WARNINGS = \$(DEFAULT_WARNINGS)
+endif" > makefile

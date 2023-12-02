@@ -15,7 +15,7 @@ for d in */; do
     echo "---------------"
     echo "Day $(echo $d | rev | cut -b 2- | rev)"
     echo "---------------"
-    ./run.sh -q
+    ./run.sh -q -s ${std:-c++23}
     cd ..
     echo "
     "
