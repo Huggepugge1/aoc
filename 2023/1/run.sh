@@ -1,14 +1,18 @@
 #!/bin/bash
 output_file="/dev/stdout"
-while getopts "q" opt; do
-  case $opt in
-    q)
-      output_file="/dev/null"
-      ;;
-  esac
+std="c++23"
+while getopts "qs:" opt; do
+    case $opt in
+        q)
+            output_file="/dev/null"
+            ;;
+        s)
+            std=$OPTARG
+            ;;
+    esac
 done
 
-make > $output_file
+make STD=$std > output_file
 
 echo "Part 1"
 ./part1
